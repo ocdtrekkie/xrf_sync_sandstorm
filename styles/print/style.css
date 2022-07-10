@@ -1,0 +1,70 @@
+/* 
+put the following code within the <head> tags of all the pages you want to implement the CSS:
+<link rel="stylesheet" type="text/css" href="style.css" />
+*/
+body {
+        background: #FFFFFF;
+     	font-family: Verdana;
+        color: #000;
+}
+
+a {
+	font-family: Verdana;
+        text-decoration: none;
+        color: #000;
+	border-color: #000;
+}
+
+
+a:hover {
+        color: #5a4b3e;
+        text-decoration: underline;
+}
+
+.header {
+	width: 780px;
+	height: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.container {
+	width: 788px;
+    height: auto;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 5px;
+	background-color: #FFFFFF;
+	border: 1px solid black;
+	outline-style: none;
+}
+
+.footer{
+    display: none;
+}
+
+.navigation-box{
+	display: none;
+}
+
+.actions-bar{
+	display: none;
+}
+
+td, tr {
+	vertical-align:top;
+	padding: 0px;
+	border: 0px;
+	margin: 0px;
+	outline-style: none;
+}
+
+table {
+	vertical-align:top;
+	padding: 0px;
+	border: 0px;
+	margin: 0px;
+	outline-style: none;
+}

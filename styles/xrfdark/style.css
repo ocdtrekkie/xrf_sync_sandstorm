@@ -1,0 +1,78 @@
+/* 
+IMPORTANT--- READ... please.
+
+put the following code within the <head> tags of all the pages you want to implement the CSS:
+<link rel="stylesheet" type="text/css" href="style.css" />
+(index.php, retrieve.php, gallery.php and request.php I believe)
+
+*/
+
+body {
+		background-image: url(images/earth.jpg);
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+     	font-family: Verdana;
+        color: #fff;
+}
+
+a {
+	font-family: Verdana;
+        text-decoration: none;
+        color: #fff;
+	border-color: #fff;
+}
+
+
+a:hover {
+        color: #5a4b3e;
+        text-decoration: underline;
+}
+
+.header {
+	width: 780px;
+	height: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-image: url(images/banner.png);
+}
+
+.container {
+	width: 788px;
+    height: auto;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 5px;
+	background-color: #000000;
+	border: 1px solid white;
+	outline-style: none;
+}
+
+.footer{
+	width: 780px;
+	height: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-image: url(images/footer.png);
+}
+
+td, tr {
+	vertical-align:top;
+	padding: 0px;
+	border: 0px;
+	margin: 0px;
+	outline-style: none;
+}
+
+table {
+	vertical-align:top;
+	padding: 0px;
+	border: 0px;
+	margin: 0px;
+	outline-style: none;
+}
