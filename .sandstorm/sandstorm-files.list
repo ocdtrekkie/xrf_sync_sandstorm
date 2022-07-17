@@ -125,7 +125,6 @@ opt/app/acp_service_db.php
 opt/app/acp_users.php
 opt/app/acp_view_log.php
 opt/app/api/v1.php
-opt/app/api/v2.php
 opt/app/includes/footer.php
 opt/app/includes/functions_auth.php
 opt/app/includes/functions_db.php
