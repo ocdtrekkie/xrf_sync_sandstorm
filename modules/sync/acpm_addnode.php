@@ -1,44 +1,3 @@
-<script>
-  function requestIframeURL() {
-    var templateToken = "$API_TOKEN";
-	var templateHost = "https://$API_HOST/v1.php"
-    window.parent.postMessage({renderTemplate: {
-      rpcId: "0",
-      template: templateToken,
-	  petname: '$descr',
-      clipboardButton: 'left'
-    }}, "*");
-	window.parent.postMessage({renderTemplate: {
-      rpcId: "1",
-      template: templateHost,
-	  petname: '$descr',
-      clipboardButton: 'left'
-    }}, "*");
-  }
-
-  document.addEventListener("DOMContentLoaded", requestIframeURL);
-  
-  var copyIframeURLToElement = function(event) {
-    if (event.data.rpcId === "0") {
-      if (event.data.error) {
-        console.log("ERROR: " + event.data.error);
-      } else {
-        var el = document.getElementById("offer-token");
-        el.setAttribute("src", event.data.uri);
-      }
-    }
-	if (event.data.rpcId === "1") {
-      if (event.data.error) {
-        console.log("ERROR: " + event.data.error);
-      } else {
-        var el = document.getElementById("offer-host");
-        el.setAttribute("src", event.data.uri);
-      }
-    }
-  };
-
-  window.addEventListener("message", copyIframeURLToElement);
-</script>
 <?php
 require("ismodule.php");
 $do = $_GET['do'];
@@ -52,6 +11,48 @@ $static = (int)$static;
 $access_key = "00" . xrf_generate_password(126);
 $acc1 = substr($access_key, 0, 64);
 $acc2 = substr($access_key, 64, 64);
+
+echo "<script>
+  function requestIframeURL() {
+    var templateToken = \"\$API_TOKEN\";
+	var templateHost = \"https://\$API_HOST/v1.php\"
+    window.parent.postMessage({renderTemplate: {
+      rpcId: \"0\",
+      template: templateToken,
+	  petname: '$descr',
+      clipboardButton: 'left'
+    }}, \"*\");
+	window.parent.postMessage({renderTemplate: {
+      rpcId: \"1\",
+      template: templateHost,
+	  petname: '$descr',
+      clipboardButton: 'left'
+    }}, \"*\");
+  }
+
+  document.addEventListener(\"DOMContentLoaded\", requestIframeURL);
+  
+  var copyIframeURLToElement = function(event) {
+    if (event.data.rpcId === \"0\") {
+      if (event.data.error) {
+        console.log(\"ERROR: \" + event.data.error);
+      } else {
+        var el = document.getElementById(\"offer-token\");
+        el.setAttribute(\"src\", event.data.uri);
+      }
+    }
+	if (event.data.rpcId === \"1\") {
+      if (event.data.error) {
+        console.log(\"ERROR: \" + event.data.error);
+      } else {
+        var el = document.getElementById(\"offer-host\");
+        el.setAttribute(\"src\", event.data.uri);
+      }
+    }
+  };
+
+  window.addEventListener(\"message\", copyIframeURLToElement);
+</script>";
 
 $addnode = mysqli_prepare($xrf_db, "INSERT INTO y_nodes (pool_id, descr, access_key, static) VALUES(?, ?, ?, ?)");
 mysqli_stmt_bind_param($addnode,"issi", $pool_id, $descr, $access_key, $static);
