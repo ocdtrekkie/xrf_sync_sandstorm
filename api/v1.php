@@ -6,6 +6,7 @@ $message_type=mysqli_real_escape_string($xrf_db, $_GET['message_type']); //heart
 $destination=mysqli_real_escape_string($xrf_db, $_GET['destination']); //server, broadcast, NODE
 $message=mysqli_real_escape_string($xrf_db, $_GET['message']); //ciphertext
 $user_agent=mysqli_real_escape_string($xrf_db, $_GET['user_agent']);
+$new_ip_addr=mysqli_real_escape_string($xrf_db, $_GET['ip_address']);
 
 $identifysender = mysqli_prepare($xrf_db, "SELECT pool_id, descr, static, last_ip_addr FROM y_nodes WHERE access_key=?");
 mysqli_stmt_bind_param($identifysender, "s", $access_key);
@@ -16,7 +17,7 @@ if (mysqli_stmt_num_rows($identifysender) == 1)
 	mysqli_stmt_bind_result($identifysender, $senderpool_id, $descr, $static, $last_ip_addr);
 	mysqli_stmt_fetch($identifysender);
 	
-	$new_ip_addr = getenv("REMOTE_ADDR");
+	if (getenv("REMOTE_ADDR") != "127.0.0.1") { $new_ip_addr = getenv("REMOTE_ADDR"); }
 	if ($new_ip_addr != $last_ip_addr && $static == 1) {
 		// Static IP change detected on always-on node
 		$logipchange = mysqli_prepare($xrf_db, "INSERT INTO g_log (uid, date, event) VALUES (?, NOW(), ?)");
