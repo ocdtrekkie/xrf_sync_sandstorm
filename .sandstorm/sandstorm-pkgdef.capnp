@@ -41,13 +41,7 @@ const pkgdef :Spk.PackageDefinition = (
     # case.
 
     metadata = (
-      # Data which is not needed specifically to execute the app, but is useful
-      # for purposes like marketing and display.  These fields are documented at
-      # https://docs.sandstorm.io/en/latest/developing/publishing-apps/#add-required-metadata
-      # and (in deeper detail) in the sandstorm source code, in the Metadata section of
-      # https://github.com/sandstorm-io/sandstorm/blob/master/src/sandstorm/package.capnp
       icons = (
-        # Various icons to represent the app in various contexts.
         appGrid = (svg = embed "xrf_sync.svg"),
         grain = (svg = embed "xrf_sync.svg"),
         market = (svg = embed "xrf_sync.svg"),
@@ -55,43 +49,25 @@ const pkgdef :Spk.PackageDefinition = (
       ),
 
       website = "https://github.com/ocdtrekkie/xrf_sync_sandstorm",
-      # This should be the app's main website url.
 
       codeUrl = "https://github.com/ocdtrekkie/xrf_sync_sandstorm",
-      # URL of the app's source code repository, e.g. a GitHub URL.
-      # Required if you specify a license requiring redistributing code, but optional otherwise.
 
       license = (openSource = mit),
-      # The license this package is distributed under.  See
-      # https://docs.sandstorm.io/en/latest/developing/publishing-apps/#license
 
       categories = [other],
-      # A list of categories/genres to which this app belongs, sorted with best fit first.
-      # See the list of categories at
-      # https://docs.sandstorm.io/en/latest/developing/publishing-apps/#categories
 
       author = (
-        # Fields relating to the author of this app.
 
         contactEmail = "inbox@jacobweisz.com",
-        # Email address to contact for any issues with this app. This includes end-user support
-        # requests as well as app store administrator requests, so it is very important that this be a
-        # valid address with someone paying attention to it.
 
         pgpSignature = embed "pgp-signature",
       ),
 
       pgpKeyring = embed "pgp-keyring",
 
-      #description = (defaultText = embed "path/to/description.md"),
-      # The app's description in Github-flavored Markdown format, to be displayed e.g.
-      # in an app store. Note that the Markdown is not permitted to contain HTML nor image tags (but
-      # you can include a list of screenshots separately).
+      description = (defaultText = embed "../README.md"),
 
       shortDescription = (defaultText = "Sync service"),
-      # A very short (one-to-three words) description of what the app does. For example,
-      # "Document editor", or "Notetaking", or "Email client". This will be displayed under the app
-      # title in the grid view in the app market.
 
       screenshots = [
         # Screenshots to use for marketing purposes.  Examples below.

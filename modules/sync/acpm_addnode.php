@@ -61,9 +61,10 @@ $lognewnodetext = "Sync: Node " . $descr . " added to pool " . $pood_id . ".";
 mysqli_stmt_bind_param($lognewnode, "is", $xrf_myid, $lognewnodetext);
 mysqli_stmt_execute($lognewnode) or die(mysqli_error($xrf_db));
 
-echo "<p>Node added. $descr's access key is:</p><p><font size=2>$access_key</font></p><p>Sandstorm bearer token is:<br>
-<iframe style=\"background-color: white; color: black; width: 100%; height: 55px; margin: 0; border: 0;\" id=\"offer-token\"></iframe><p>Sandstorm host URL is:<br>
-<iframe style=\"background-color: white; color: black; width: 100%; height: 55px; margin: 0; border: 0;\" id=\"offer-host\"></iframe>";
+echo "<p>Node \"$descr\" added.</p><p>Sandstorm Host URL is:<p>
+<iframe style=\"background-color: white; width: 100%; height: 30px; margin: 0; border: 0;\" id=\"offer-host\"></iframe><p>Sandstorm Access Token is:<p>
+<iframe style=\"background-color: white; width: 100%; height: 30px; margin: 0; border: 0;\" id=\"offer-token\"></iframe><p>
+Sync Server Access Key is:<div style=\"background-color: white; color: black; text-align: left; width: 100%; height: 30px; margin: 0; border: 0;\"><pre id=\"text\">$access_key</pre></div>";
 }
 else
 {
