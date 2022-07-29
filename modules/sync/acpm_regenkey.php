@@ -6,6 +6,48 @@ if ($do == "rekey")
 $descr = mysqli_real_escape_string($xrf_db, $_POST['descr']);
 $access_key = "00" . xrf_generate_password(62);
 
+echo "<script>
+  function requestIframeURL() {
+    var templateToken = \"\$API_TOKEN\";
+	var templateHost = \"https://\$API_HOST/v1.php\"
+    window.parent.postMessage({renderTemplate: {
+      rpcId: \"0\",
+      template: templateToken,
+	  petname: '$descr',
+      clipboardButton: 'left'
+    }}, \"*\");
+	window.parent.postMessage({renderTemplate: {
+      rpcId: \"1\",
+      template: templateHost,
+	  petname: '$descr',
+      clipboardButton: 'left'
+    }}, \"*\");
+  }
+
+  document.addEventListener(\"DOMContentLoaded\", requestIframeURL);
+  
+  var copyIframeURLToElement = function(event) {
+    if (event.data.rpcId === \"0\") {
+      if (event.data.error) {
+        console.log(\"ERROR: \" + event.data.error);
+      } else {
+        var el = document.getElementById(\"offer-token\");
+        el.setAttribute(\"src\", event.data.uri);
+      }
+    }
+	if (event.data.rpcId === \"1\") {
+      if (event.data.error) {
+        console.log(\"ERROR: \" + event.data.error);
+      } else {
+        var el = document.getElementById(\"offer-host\");
+        el.setAttribute(\"src\", event.data.uri);
+      }
+    }
+  };
+
+  window.addEventListener(\"message\", copyIframeURLToElement);
+</script>";
+
 $rekeynode = mysqli_prepare($xrf_db, "UPDATE y_nodes SET access_key = ? WHERE descr = ?");
 mysqli_stmt_bind_param($rekeynode,"ss", $access_key, $descr);
 mysqli_stmt_execute($rekeynode) or die(mysqli_error($xrf_db));
@@ -15,7 +57,10 @@ $logrekeynodetext = "Sync: Node " . $descr . " rekeyed.";
 mysqli_stmt_bind_param($logrekeynode, "is", $xrf_myid, $logrekeynodetext);
 mysqli_stmt_execute($logrekeynode) or die(mysqli_error($xrf_db));
 
-echo "<p>Node rekeyed. $descr's access key is:</p><p><font size=2>$access_key</font></p>";
+echo "<p>Node \"$descr\" rekeyed.</p><p>Sandstorm Host URL is:<p>
+<iframe style=\"background-color: white; width: 100%; height: 30px; margin: 0; border: 0;\" id=\"offer-host\"></iframe><p>Sandstorm Access Token is:<p>
+<iframe style=\"background-color: white; width: 100%; height: 30px; margin: 0; border: 0;\" id=\"offer-token\"></iframe><p>
+Sync Server Access Key is:<div style=\"background-color: white; color: black; text-align: left; width: 100%; height: 30px; margin: 0; border: 0;\"><pre id=\"text\">$access_key</pre></div>";
 }
 else
 {
