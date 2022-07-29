@@ -8,9 +8,7 @@ $pool_id = mysqli_real_escape_string($xrf_db, $_POST['pool_id']);
 $pool_id = (int)$pool_id;
 $static = mysqli_real_escape_string($xrf_db, $_POST['static']);
 $static = (int)$static;
-$access_key = "00" . xrf_generate_password(126);
-$acc1 = substr($access_key, 0, 64);
-$acc2 = substr($access_key, 64, 64);
+$access_key = "00" . xrf_generate_password(62);
 
 echo "<script>
   function requestIframeURL() {
@@ -63,7 +61,7 @@ $lognewnodetext = "Sync: Node " . $descr . " added to pool " . $pood_id . ".";
 mysqli_stmt_bind_param($lognewnode, "is", $xrf_myid, $lognewnodetext);
 mysqli_stmt_execute($lognewnode) or die(mysqli_error($xrf_db));
 
-echo "<p>Node added. $descr's access key is:</p><p><font size=2>$acc1<br>$acc2</font></p><p>Sandstorm bearer token is:<br>
+echo "<p>Node added. $descr's access key is:</p><p><font size=2>$access_key</font></p><p>Sandstorm bearer token is:<br>
 <iframe style=\"background-color: white; color: black; width: 100%; height: 55px; margin: 0; border: 0;\" id=\"offer-token\"></iframe><p>Sandstorm host URL is:<br>
 <iframe style=\"background-color: white; color: black; width: 100%; height: 55px; margin: 0; border: 0;\" id=\"offer-host\"></iframe>";
 }

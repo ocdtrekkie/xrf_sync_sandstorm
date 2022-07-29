@@ -4,9 +4,7 @@ $do = $_GET['do'];
 if ($do == "rekey")
 {
 $descr = mysqli_real_escape_string($xrf_db, $_POST['descr']);
-$access_key = "00" . xrf_generate_password(126);
-$acc1 = substr($access_key, 0, 64);
-$acc2 = substr($access_key, 64, 64);
+$access_key = "00" . xrf_generate_password(62);
 
 $rekeynode = mysqli_prepare($xrf_db, "UPDATE y_nodes SET access_key = ? WHERE descr = ?");
 mysqli_stmt_bind_param($rekeynode,"ss", $access_key, $descr);
@@ -17,7 +15,7 @@ $logrekeynodetext = "Sync: Node " . $descr . " rekeyed.";
 mysqli_stmt_bind_param($logrekeynode, "is", $xrf_myid, $logrekeynodetext);
 mysqli_stmt_execute($logrekeynode) or die(mysqli_error($xrf_db));
 
-echo "<p>Node rekeyed. $descr's access key is:</p><p><font size=2>$acc1<br>$acc2</font></p>";
+echo "<p>Node rekeyed. $descr's access key is:</p><p><font size=2>$access_key</font></p>";
 }
 else
 {
