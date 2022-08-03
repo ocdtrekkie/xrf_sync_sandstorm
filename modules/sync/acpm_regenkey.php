@@ -6,6 +6,12 @@ if ($do == "rekey")
 $descr = mysqli_real_escape_string($xrf_db, $_POST['descr']);
 $access_key = "00" . xrf_generate_password(62);
 
+if ($xrf_style == "xrflight") {
+	$tcolor = "#000000"; $bcolor = "#ffffff";
+} elseif ($xrf_style == "xrfdark") {
+	$tcolor = "#ffffff"; $bcolor = "#000000";
+}
+
 echo "<script>
   function requestIframeURL() {
     var templateToken = \"\$API_TOKEN\";
@@ -14,13 +20,15 @@ echo "<script>
       rpcId: \"0\",
       template: templateToken,
 	  petname: '$descr',
-      clipboardButton: 'left'
+      clipboardButton: 'left',
+	  style: { color: '$tcolor' }
     }}, \"*\");
 	window.parent.postMessage({renderTemplate: {
       rpcId: \"1\",
       template: templateHost,
 	  petname: '$descr',
-      clipboardButton: 'left'
+      clipboardButton: 'left',
+	  style: { color: '$tcolor' }
     }}, \"*\");
   }
 
@@ -58,9 +66,9 @@ mysqli_stmt_bind_param($logrekeynode, "is", $xrf_myid, $logrekeynodetext);
 mysqli_stmt_execute($logrekeynode) or die(mysqli_error($xrf_db));
 
 echo "<p>Node \"$descr\" rekeyed.</p><p>Sandstorm Host URL is:<p>
-<iframe style=\"background-color: white; width: 100%; height: 30px; margin: 0; border: 0;\" id=\"offer-host\"></iframe><p>Sandstorm Access Token is:<p>
-<iframe style=\"background-color: white; width: 100%; height: 30px; margin: 0; border: 0;\" id=\"offer-token\"></iframe><p>
-Sync Server Access Key is:<div style=\"background-color: white; color: black; text-align: left; width: 100%; height: 30px; margin: 0; border: 0;\"><pre id=\"text\">$access_key</pre></div>";
+<iframe style=\"background-color: $bcolor; width: 100%; height: 30px; margin: 0; border: 0;\" id=\"offer-host\"></iframe><p>Sandstorm Access Token is:<p>
+<iframe style=\"background-color: $bcolor; width: 100%; height: 30px; margin: 0; border: 0;\" id=\"offer-token\"></iframe><p>
+Sync Server Access Key is:<div style=\"background-color: $bcolor; color: $tcolor; text-align: left; width: 100%; height: 30px; margin: 0; border: 0;\"><pre id=\"text\">$access_key</pre></div>";
 }
 else
 {
