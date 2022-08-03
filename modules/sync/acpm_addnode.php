@@ -65,7 +65,7 @@ mysqli_stmt_bind_param($addnode,"issi", $pool_id, $descr, $access_key, $static);
 mysqli_stmt_execute($addnode) or die(mysqli_error($xrf_db));
 
 $lognewnode = mysqli_prepare($xrf_db, "INSERT INTO g_log (uid, date, event) VALUES (?, NOW(), ?)");
-$lognewnodetext = "Sync: Node " . $descr . " added to pool " . $pood_id . ".";
+$lognewnodetext = "Sync: Node " . $descr . " added to pool " . $pool_id . ".";
 mysqli_stmt_bind_param($lognewnode, "is", $xrf_myid, $lognewnodetext);
 mysqli_stmt_execute($lognewnode) or die(mysqli_error($xrf_db));
 
