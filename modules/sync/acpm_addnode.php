@@ -1,6 +1,6 @@
 <?php
 require("ismodule.php");
-$do = $_GET['do'];
+$do = $_GET['do'] ?? '';
 if ($do == "add")
 {
 $descr = mysqli_real_escape_string($xrf_db, $_POST['descr']);

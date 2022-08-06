@@ -4,9 +4,9 @@ $handled = false;
 $access_key=mysqli_real_escape_string($xrf_db, $_GET['access_key']); //00accesskey
 $message_type=mysqli_real_escape_string($xrf_db, $_GET['message_type']); //heartbeat, alert, command, message
 $destination=mysqli_real_escape_string($xrf_db, $_GET['destination']); //server, broadcast, NODE
-$message=mysqli_real_escape_string($xrf_db, $_GET['message']); //ciphertext
+$message=mysqli_real_escape_string($xrf_db, $_GET['message'] ?? ''); //ciphertext
 $user_agent=mysqli_real_escape_string($xrf_db, $_GET['user_agent']);
-$new_ip_addr=mysqli_real_escape_string($xrf_db, $_GET['ip_address']);
+$new_ip_addr=mysqli_real_escape_string($xrf_db, $_GET['ip_address'] ?? '');
 
 $identifysender = mysqli_prepare($xrf_db, "SELECT pool_id, descr, static, last_ip_addr FROM y_nodes WHERE access_key=?");
 mysqli_stmt_bind_param($identifysender, "s", $access_key);
