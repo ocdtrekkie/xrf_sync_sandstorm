@@ -79,8 +79,8 @@ else
 echo "<b>Add New Sync Node</b><p>";
 
 echo "<form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addnode&do=add\" method=\"POST\">
-<table><tr><td><b>Nickname:</b></td><td><input type=\"text\" name=\"descr\" size=\"20\"></td></tr>
-<tr><td><b>Pool ID:</b></td><td><input type=\"text\" name=\"pool_id\" value=\"0\" size=\"3\"></td></tr>
+<table><tr><td><b>Nickname:</b></td><td><input type=\"text\" name=\"descr\" size=\"20\" required></td></tr>
+<tr><td><b>Pool ID:</b></td><td><input type=\"number\" name=\"pool_id\" value=\"0\" size=\"3\" required></td></tr>
 <tr><td><b>Always On?</b></td><td><select name=\"static\"><option value=\"0\">No</option><option value=\"1\">Yes</option></select></td></tr>
 <tr><td></td><td><input type=\"submit\" value=\"Add\"></td></tr></table></form>";
 }
