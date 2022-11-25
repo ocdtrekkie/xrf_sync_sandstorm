@@ -31,6 +31,21 @@ if (mysqli_stmt_num_rows($identifysender) == 1)
 	mysqli_stmt_bind_param($updatenode, "sss", $new_ip_addr, $user_agent, $access_key);
 	mysqli_stmt_execute($updatenode) or die(mysqli_error($xrf_db));
 	
+	if ($message_type == "fetch" && $destination == "server") {
+		// This is a request for unread messages
+		$getmessages = mysqli_prepare($xrf_db, "SELECT * FROM y_messages WHERE dest=? AND recv=0");
+		mysqli_stmt_bind_param($getmessages, "s", $descr);
+		mysqli_stmt_execute($getmessages) or die(mysqli_error($xrf_db));
+		$messageresult = mysqli_stmt_get_result($getmessages);
+		$responsearray = $messageresult->fetch_all(MYSQLI_ASSOC);
+		http_response_code(200); echo json_encode($responsearray);
+		// Mark the messages as read
+		$messagesrecv = mysqli_prepare($xrf_db, "UPDATE y_messages SET recv=1 WHERE dest=?");
+		mysqli_stmt_bind_param($messagesrecv, "s", $descr);
+		mysqli_stmt_execute($messagesrecv) or die(mysqli_error($xrf_db));
+		$handled = true;
+	}
+	
 	if ($message_type == "heartbeat" && $destination == "server") {
 		// This is a heartbeat, all heartbeats should go to the server
 		$getmessagecount = mysqli_prepare($xrf_db, "SELECT id FROM y_messages WHERE dest=? AND recv=0");
