@@ -9,14 +9,14 @@ $command = mysqli_real_escape_string($xrf_db, $_POST['command']);
 $commandnode = mysqli_prepare($xrf_db, "INSERT INTO y_messages (source, dest, sent, mesg) VALUES ('server', ?, NOW(), ?)");
 mysqli_stmt_bind_param($commandnode, "ss", $descr, $command);
 mysqli_stmt_execute($commandnode) or die(mysqli_error($xrf_db));
-http_response_code(202); echo "Message queued for delivery.";
+http_response_code(202);
 
 $logcommandnode = mysqli_prepare($xrf_db, "INSERT INTO g_log (uid, date, event) VALUES (?, NOW(), ?)");
 $logcommandnodetext = "Sync: Manual command to " . $descr . ": " . $command;
 mysqli_stmt_bind_param($logcommandnode, "is", $xrf_myid, $logcommandnodetext);
 mysqli_stmt_execute($logcommandnode) or die(mysqli_error($xrf_db));
 
-echo "<p>Command sent.</p>";
+xrf_go_redir("acp_module_panel.php?modfolder=$modfolder&modpanel=nodelist","Message queued for delivery.",6);
 }
 else
 {
