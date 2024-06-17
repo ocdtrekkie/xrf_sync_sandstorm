@@ -7,6 +7,7 @@ $destination=mysqli_real_escape_string($xrf_db, $_GET['destination']); //server,
 $message=mysqli_real_escape_string($xrf_db, $_GET['message'] ?? ''); //ciphertext
 $user_agent=mysqli_real_escape_string($xrf_db, $_GET['user_agent']);
 $new_ip_addr=mysqli_real_escape_string($xrf_db, $_GET['ip_address'] ?? '');
+$new_winver=mysqli_real_escape_string($xrf_db, $_GET['windows_version'] ?? '');
 
 $identifysender = mysqli_prepare($xrf_db, "SELECT pool_id, descr, static, last_ip_addr FROM y_nodes WHERE access_key=?");
 mysqli_stmt_bind_param($identifysender, "s", $access_key);
@@ -26,9 +27,9 @@ if (mysqli_stmt_num_rows($identifysender) == 1)
 		mysqli_stmt_execute($logipchange) or die(mysqli_error($xrf_db));
 		}
 	
-	$updatenode = mysqli_prepare($xrf_db, "UPDATE y_nodes SET last_seen = NOW(), last_ip_addr = ?, user_agent = ? WHERE access_key = ?");
+	$updatenode = mysqli_prepare($xrf_db, "UPDATE y_nodes SET last_seen = NOW(), last_ip_addr = ?, last_winver = ?, user_agent = ? WHERE access_key = ?");
 	if ($user_agent == "") { $user_agent = mysqli_real_escape_string($xrf_db, $_SERVER['HTTP_USER_AGENT']); }
-	mysqli_stmt_bind_param($updatenode, "sss", $new_ip_addr, $user_agent, $access_key);
+	mysqli_stmt_bind_param($updatenode, "ssss", $new_ip_addr, $new_winver, $user_agent, $access_key);
 	mysqli_stmt_execute($updatenode) or die(mysqli_error($xrf_db));
 	
 	if ($message_type == "fetch" && $destination == "server") {
