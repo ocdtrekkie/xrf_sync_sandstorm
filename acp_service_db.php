@@ -8,7 +8,7 @@ if ($xrf_myulevel < 4)
 }
 else
 {
-	$do = $_GET['do'];
+	$do = $_GET['do'] ?? '';
 	if ($do == "execute")
 	{
 		$sqltoexecute = $_POST['sqltoexecute'];

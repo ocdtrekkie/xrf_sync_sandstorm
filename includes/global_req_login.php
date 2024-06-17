@@ -4,7 +4,7 @@ require_once("includes/functions_auth.php");
 require_once("includes/functions_db.php");
 require_once("includes/functions_redir.php");
 require_once("includes/functions_sec.php");
-$xrf_auth_version_page = "0S.1";
+$xrf_auth_version_page = "0S.2";
 
 // Guest settings
 $xrf_myid = 0;
