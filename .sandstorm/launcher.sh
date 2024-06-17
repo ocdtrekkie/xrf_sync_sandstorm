@@ -15,7 +15,6 @@ wait_for() {
 mkdir -p /var/lib/mysql
 mkdir -p /var/lib/mysql-files
 mkdir -p /var/lib/nginx
-mkdir -p /var/lib/php/sessions
 mkdir -p /var/log
 mkdir -p /var/log/mysql
 mkdir -p /var/log/nginx
@@ -26,6 +25,8 @@ mkdir -p /var/run/php
 rm -rf /var/tmp
 mkdir -p /var/tmp
 mkdir -p /var/run/mysqld
+rm -rf /var/lib/php/sessions
+mkdir -p /var/lib/php/sessions
 
 # Rotate log files larger than 512K
 log_files="$(find /var/log -type f -name '*.log')"
