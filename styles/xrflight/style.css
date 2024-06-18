@@ -31,7 +31,7 @@ a:hover {
 }
 
 .header {
-	width: 780px;
+	width: 980px;
 	height: 100px;
 	margin-left: auto;
 	margin-right: auto;
@@ -41,7 +41,7 @@ a:hover {
 }
 
 .container {
-	width: 788px;
+	width: 988px;
     height: auto;
 	margin-left:auto;
 	margin-right:auto;
@@ -52,7 +52,7 @@ a:hover {
 }
 
 .footer{
-	width: 780px;
+	width: 980px;
 	height: 25px;
 	margin-left: auto;
 	margin-right: auto;

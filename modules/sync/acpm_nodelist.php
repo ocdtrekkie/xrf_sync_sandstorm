@@ -18,7 +18,7 @@ $pool_id=xrf_mysql_result($result,$qq,"pool_id");
 $last_seen=xrf_mysql_result($result,$qq,"last_seen");
 $last_ip_addr=xrf_mysql_result($result,$qq,"last_ip_addr");
 $last_winver=xrf_mysql_result($result,$qq,"last_winver");
-if ($last_winver != '') { $winbuild=substr($last_winver, 5); }
+if ($last_winver != '') { $winbuild=substr($last_winver, 5); } else { $winbuild = ''; }
 $user_agent=xrf_mysql_result($result,$qq,"user_agent");
 $static=xrf_mysql_result($result,$qq,"static");
 // TODO: If static, last seen should be green or red based on how long since it's checked in
