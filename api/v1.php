@@ -61,7 +61,17 @@ if (mysqli_stmt_num_rows($identifysender) == 1)
 	if ($message_type == "nodedata" && $destination == "server" && $message = "newsoftware") {
 		// This is a node updating it's installed software list
 		$requestBody = file_get_contents('php://input');
-		error_log($requestBody);
+		$softwareData = json_decode($requestBody);
+		foreach ($softwareData->newsoftware as $software) {
+			$appname = $software->Name;
+			$appver = $software->Version;
+			$apppub = $software->Publisher;
+			$appdate = $software->InstallDate;
+			$storeapps = mysqli_prepare($xrf_db, "INSERT INTO y_nodesoftware (descr, name, ver, pub, date) VALUES (?, ?, ?, ?. ?)");
+			mysqli_stmt_bind_param($storeapps, "sssss", $descr, $appname, $appver, $apppub, $appdate);
+			mysqli_stmt_execute($storeapps) or die (mysqli_error($xrf_db));
+			http_response_code(200); echo "[]";
+		}
 		$handled = true;
 	}
 	

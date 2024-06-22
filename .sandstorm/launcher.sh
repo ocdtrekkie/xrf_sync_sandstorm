@@ -47,15 +47,19 @@ HOME=/etc/mysql /usr/sbin/mysqld --skip-grant-tables &
 # Wait until mysql and php have bound their sockets, indicating readiness
 wait_for mysql /var/run/mysqld/mysqld.sock
 
-if [ ! -e /var/.db-2406.1 ]; then
-    if [ ! -e /var/.db-created ]; then
-        mysql --user root -e 'CREATE DATABASE app'
-        mysql --user root --database app < /opt/app/install_into_db.sql
-        mysql --user root --database app < /opt/app/install_into_db_sync.sql
-        touch /var/.db-created
+if [ ! -e /var/.db-2406.2 ]; then
+    if [ ! -e /var/.db-2406.1 ]; then
+        if [ ! -e /var/.db-created ]; then
+            mysql --user root -e 'CREATE DATABASE app'
+            mysql --user root --database app < /opt/app/install_into_db.sql
+            mysql --user root --database app < /opt/app/install_into_db_sync.sql
+            touch /var/.db-created
+        fi
+        mysql --user root --database app < /opt/app/install_into_db_sync_2406.1.sql
+        touch /var/.db-2406.1
     fi
-	mysql --user root --database app < /opt/app/install_into_db_sync_2406.1.sql
-    touch /var/.db-2406.1
+    mysql --user root --database app < /opt/app/install_into_db_sync_2406.2.sql
+    touch /var/.db-2406.2
 fi
 
 wait_for php-fpm8.2 /var/run/php/php8.2-fpm.sock
