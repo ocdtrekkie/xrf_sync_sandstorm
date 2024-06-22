@@ -58,6 +58,13 @@ if (mysqli_stmt_num_rows($identifysender) == 1)
 		$handled = true;
 	}
 	
+	if ($message_type == "nodedata" && $destination == "server" && $message = "newsoftware") {
+		// This is a node updating it's installed software list
+		$requestBody = file_get_contents('php://input');
+		error_log($requestBody);
+		$handled = true;
+	}
+	
 	if ($message_type == "message" && $destination != "server" && $destination != "broadcast") {
 		// This is a message to another node
 		$identifyrecvr = mysqli_prepare($xrf_db, "SELECT pool_id FROM y_nodes WHERE descr=?");
