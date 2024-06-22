@@ -110,6 +110,7 @@ if ($do == "change")
 }
 else
 {
+	$vlogy = ""; $vlogn = "";
 	if ($xrf_vlog_enabled == 1)
 		$vlogy = " checked";
 	else
