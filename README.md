@@ -1,8 +1,6 @@
 # XRF Sync for Sandstorm
 
-XRF Sync is a very light web service intended to allow instances of applications on different computers across the Internet to send each other commands. It is only partially implemented at this time, and largely operates as a heartbeat service for the various clients, though inter-client messaging is in progress. It was built to support the [HAController](https://github.com/ocdtrekkie/HAController) home automation software, however, you can monitor the connection of a computer using [SSCaaS](https://github.com/ocdtrekkie/SSCaaS) as well.
-
-XRF Sync for Sandstorm operates XRF Sync via the HTTP API support in Sandstorm. As XRF Sync for Sandstorm evolves, it will fully embrace the Sandstorm app model, dropping support for multiple pools in exchange for multiple XRF Sync grains, and more heavily relying on Sandstorm's own authentication rather than independently generated keys. When XRF Sync for Sandstorm sufficiently diverges from compatibility with XRF Sync, the latter will be deprecated.
+XRF Sync is a remote monitoring and management (RMM) tool, with the ability to permit messages between different endpoints in specific scenarios. It was originally built to support the [HAController](https://github.com/ocdtrekkie/HAController) home automation software, however, today the preferred client is [XRFAgent](https://github.com/ocdtrekkie/XRFAgent) which can, in turn, pass commands through to HAC via LocalQueue mode.
 
 ## Additional credits
 
