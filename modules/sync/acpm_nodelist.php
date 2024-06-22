@@ -23,7 +23,7 @@ $user_agent=xrf_mysql_result($result,$qq,"user_agent");
 $static=xrf_mysql_result($result,$qq,"static");
 // TODO: If static, last seen should be green or red based on how long since it's checked in
 
-echo "<tr><td>$id</td><td>$descr</td><td>$pool_id</td><td>$last_seen</td><td>$last_ip_addr</td><td>$winbuild</td><td>$user_agent</td></tr>";
+echo "<tr><td>$id</td><td><a href=\"acp_module_panel.php?modfolder=$modfolder&modpanel=nodedetail&nodeid=$id\">$descr</a></td><td>$pool_id</td><td>$last_seen</td><td>$last_ip_addr</td><td>$winbuild</td><td>$user_agent</td></tr>";
 $qq++;
 }
 
