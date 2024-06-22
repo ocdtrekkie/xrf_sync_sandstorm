@@ -70,8 +70,8 @@ if (mysqli_stmt_num_rows($identifysender) == 1)
 			$storeapps = mysqli_prepare($xrf_db, "INSERT INTO y_nodesoftware (descr, appname, appver, apppub, appdate) VALUES (?, ?, ?, ?, ?)");
 			mysqli_stmt_bind_param($storeapps, "sssss", $descr, $appname, $appver, $apppub, $appdate);
 			mysqli_stmt_execute($storeapps) or die (mysqli_error($xrf_db));
-			http_response_code(200); echo "[]";
 		}
+		http_response_code(200); echo "[]";
 		$handled = true;
 	}
 	
