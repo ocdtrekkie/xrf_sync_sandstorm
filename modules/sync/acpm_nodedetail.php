@@ -28,7 +28,7 @@ $softresult=mysqli_query($xrf_db, $softquery);
 
 $num=mysqli_num_rows($softresult);
 
-echo "<table><tr><td width=220><b>App Name</b></td><td width=220><b>Version</b><td width=220><b>Publisher</b></td><td width=120><b>Installed</b></td></tr>";
+echo "<table><tr><td width=300><b>App Name</b></td><td width=180><b>Version</b><td width=220><b>Publisher</b></td><td width=120><b>Installed</b></td></tr>";
 $qq=0;
 while ($qq < $num) {
 
@@ -37,7 +37,7 @@ $appver=xrf_mysql_result($softresult,$qq,"appver");
 $apppub=xrf_mysql_result($softresult,$qq,"apppub");
 $appdate=xrf_mysql_result($softresult,$qq,"appdate");
 
-echo "<tr><td>$appname</td><td>$appver</td><td>$apppub</td><td>$appdate</td></tr>";
+echo "<tr><td><small>$appname</small></td><td><small>$appver</small></td><td><small>$apppub</small></td><td><small>$appdate</small></td></tr>";
 $qq++;
 }
 
