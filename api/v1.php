@@ -63,9 +63,9 @@ if (mysqli_stmt_num_rows($identifysender) == 1)
 		$requestBody = file_get_contents('php://input');
 		$softwareData = json_decode($requestBody);
 		foreach ($softwareData->newsoftware as $software) {
-			$appname = $software->Name;
-			$appver = $software->Version;
-			$apppub = $software->Publisher;
+			$appname = substr($software->Name,0,128);
+			$appver = substr($software->Version,0,32);
+			$apppub = substr($software->Publisher,0,128);
 			$appdate = $software->InstallDate;
 			$storeapps = mysqli_prepare($xrf_db, "INSERT INTO y_nodesoftware (descr, appname, appver, apppub, appdate) VALUES (?, ?, ?, ?, ?)");
 			mysqli_stmt_bind_param($storeapps, "sssss", $descr, $appname, $appver, $apppub, $appdate);
