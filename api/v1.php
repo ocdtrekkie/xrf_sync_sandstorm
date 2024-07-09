@@ -58,6 +58,21 @@ if (mysqli_stmt_num_rows($identifysender) == 1)
 		$handled = true;
 	}
 	
+	if ($message_type == "nodedata" && $destination == "server" && $message = "systemdetails") {
+		// This is a node updating it's system details
+		$requestBody = file_get_contents('php://input');
+		$detailsData = json_decode($requestBody);
+		foreach ($detailsData->systemdetails as $detail) {
+			$nkey = substr($detail->Key,0,64);
+			$nvalue = substr($detail->Value,0,128);
+			$storedetails = mysqli_prepare($xrf_db, "INSERT INTO y_nodekv (descr, nkey, nvalue) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE nvalue = VALUES(nvalue)");
+			mysqli_stmt_bind_param($storedetails, "sss", $descr, $nkey, $nvalue);
+			mysqli_stmt_execute($storedetails) or die (mysqli_error($xrf_db));
+		}
+		http_response_code(200); echo "[]";
+		$handled = true;
+	}
+	
 	if ($message_type == "nodedata" && $destination == "server" && $message = "newsoftware") {
 		// This is a node updating it's installed software list
 		$requestBody = file_get_contents('php://input');
@@ -66,7 +81,7 @@ if (mysqli_stmt_num_rows($identifysender) == 1)
 			$appname = substr($software->Name,0,128);
 			$appver = substr($software->Version,0,32);
 			$apppub = substr($software->Publisher,0,128);
-			$appdate = $software->InstallDate;
+			$appdate = substr($software->InstallDate,0,16);
 			$storeapps = mysqli_prepare($xrf_db, "INSERT INTO y_nodesoftware (descr, appname, appver, apppub, appdate) VALUES (?, ?, ?, ?, ?)");
 			mysqli_stmt_bind_param($storeapps, "sssss", $descr, $appname, $appver, $apppub, $appdate);
 			mysqli_stmt_execute($storeapps) or die (mysqli_error($xrf_db));
