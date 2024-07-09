@@ -13,7 +13,7 @@ $pool_id=xrf_mysql_result($result,0,"pool_id");
 $last_seen=xrf_mysql_result($result,0,"last_seen");
 $last_ip_addr=xrf_mysql_result($result,0,"last_ip_addr");
 $last_winver=xrf_mysql_result($result,0,"last_winver");
-if ($last_winver != '') { $winbuild=substr($last_winver, 5); }
+if ($last_winver != '') { $winbuild=substr($last_winver, 5); } else { $winbuild=''; }
 $user_agent=xrf_mysql_result($result,0,"user_agent");
 $static=xrf_mysql_result($result,0,"static");
 
