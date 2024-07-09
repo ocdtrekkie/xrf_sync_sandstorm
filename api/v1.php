@@ -58,7 +58,7 @@ if (mysqli_stmt_num_rows($identifysender) == 1)
 		$handled = true;
 	}
 	
-	if ($message_type == "nodedata" && $destination == "server" && $message = "systemdetails") {
+	if ($message_type == "nodedata" && $destination == "server" && $message == "systemdetails") {
 		// This is a node updating it's system details
 		$requestBody = file_get_contents('php://input');
 		$detailsData = json_decode($requestBody);
@@ -73,7 +73,7 @@ if (mysqli_stmt_num_rows($identifysender) == 1)
 		$handled = true;
 	}
 	
-	if ($message_type == "nodedata" && $destination == "server" && $message = "newsoftware") {
+	if ($message_type == "nodedata" && $destination == "server" && $message == "newsoftware") {
 		// This is a node updating it's installed software list
 		$requestBody = file_get_contents('php://input');
 		$softwareData = json_decode($requestBody);
