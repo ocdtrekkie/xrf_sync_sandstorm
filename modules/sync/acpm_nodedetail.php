@@ -13,13 +13,27 @@ $pool_id=xrf_mysql_result($result,0,"pool_id");
 $last_seen=xrf_mysql_result($result,0,"last_seen");
 $last_ip_addr=xrf_mysql_result($result,0,"last_ip_addr");
 $last_winver=xrf_mysql_result($result,0,"last_winver");
-if ($last_winver != '') { $winbuild=substr($last_winver, 5); } else { $winbuild=''; }
 $user_agent=xrf_mysql_result($result,0,"user_agent");
 $static=xrf_mysql_result($result,0,"static");
 
+$kvquery="SELECT nkey, nvalue FROM y_nodekv WHERE descr = '$descr'";
+$kvresult=mysqli_query($xrf_db, $kvquery);
+$kvarray = array();
+while ($row = mysqli_fetch_assoc($kvresult)) {
+    $kvarray[$row['nkey']] = $row['nvalue'];
+}
+
 echo "<b>$descr</b> (ID: $id)<p>";
 
-echo "Last Seen: $last_seen<br>Last IP Address: $last_ip_addr<br>Windows Build: $winbuild<br>User Agent: $user_agent<br>Node Pool: $pool_id";
+echo "<table width=100%><tr><td width=50%>Hostname: " . @$kvarray['System_Hostname'] . "<br> <br>OS: " . @$kvarray['System_OSProductName'] . "<br>Build: $last_winver";
+
+echo "<br> <br>Last Seen: $last_seen<br>Last IP Address: $last_ip_addr<br>User Agent: $user_agent<br>Node Pool: $pool_id</td><td width=50%>";
+
+echo "Processor: " . @$kvarray['System_ProcessorName'] . "<br>Memory: " . @$kvarray['System_TotalPhysicalMemory'];
+echo "<br> <br>System OEM: " . @$kvarray['System_SystemManufacturer'] . "<br>System Model: " . @$kvarray['System_SystemProductName'];
+echo "<br>Mobo OEM: " . @$kvarray['System_BaseBoardManufacturer'] . "<br>Mobo Model: " . @$kvarray['System_BaseBoardProduct'];
+
+echo "</td></tr></table>";
 
 echo "<p><b>Installed Software</b></p>";
 
