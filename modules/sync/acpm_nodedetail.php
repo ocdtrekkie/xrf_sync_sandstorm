@@ -27,7 +27,13 @@ echo "<b>$descr</b> (ID: $id)<p>";
 
 echo "<table width=100%><tr><td width=50%>Hostname: " . @$kvarray['System_Hostname'] . "<br> <br>OS: " . @$kvarray['System_OSProductName'] . "<br>Build: $last_winver";
 
-echo "<br> <br>Last Seen: $last_seen<br>Last IP Address: $last_ip_addr<br>User Agent: $user_agent<br>Node Pool: $pool_id</td><td width=50%>";
+echo "<br> <br>Last Seen: $last_seen<br>Last IP Address: $last_ip_addr<br>User Agent: $user_agent";
+
+if (isset($kvarray['HAController_Version'])) {
+	echo "<br>HAC Version: HAController/" . $kvarray['HAController_Version'];
+}
+
+echo "<br>Node Pool: $pool_id</td><td width=50%>";
 
 echo "Processor: " . @$kvarray['System_ProcessorName'] . "<br>Memory: " . @$kvarray['System_TotalPhysicalMemory'];
 echo "<br> <br>System OEM: " . @$kvarray['System_SystemManufacturer'] . "<br>System Model: " . @$kvarray['System_SystemProductName'];
