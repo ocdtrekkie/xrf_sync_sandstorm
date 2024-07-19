@@ -27,12 +27,15 @@ $static=xrf_mysql_result($result,0,"static");
 
 $kvquery="SELECT nkey, nvalue FROM y_nodekv WHERE descr = '$descr'";
 $kvresult=mysqli_query($xrf_db, $kvquery);
-$kvarray = array(); $drivearray = array();
+$kvarray = array(); $drivearray = array(); $fixarray = array();
 while ($row = mysqli_fetch_assoc($kvresult)) {
     $kvarray[$row['nkey']] = $row['nvalue'];
     if (str_starts_with($row['nkey'],"System_Drive_")) {
         $dletter = substr($row['nkey'],13,1);
         if (!in_array($dletter,$drivearray)) { $drivearray[] = $dletter; }
+    }
+    if (str_starts_with($row['nkey'],"Security_")) {
+        $fixarray[] = $row['nkey'];
     }
 }
 
@@ -53,6 +56,14 @@ echo "<br> <br>System OEM: " . @$kvarray['System_SystemManufacturer'] . "<br>Sys
 echo "<br>Mobo OEM: " . @$kvarray['System_BaseBoardManufacturer'] . "<br>Mobo Model: " . @$kvarray['System_BaseBoardProduct'];
 
 echo "</td></tr></table>";
+
+if (!empty($fixarray)) {
+    echo "<p><b>Security Fixes</b></p>";
+
+    foreach ($fixarray as $fix) {
+        echo $fix . "&nbsp;" . $kvarray[$fix];
+    }
+}
 
 if (!empty($drivearray)) {
     echo "<p><b>Drives</b></p>
