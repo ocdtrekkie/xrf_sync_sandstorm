@@ -19,9 +19,9 @@ const pkgdef :Spk.PackageDefinition = (
 
     appTitle = (defaultText = "XRF Sync"),
 
-    appVersion = 10,  # Increment this for every release.
+    appVersion = 11,  # Increment this for every release.
 
-    appMarketingVersion = (defaultText = "0.0.10"),
+    appMarketingVersion = (defaultText = "1.0.11"),
     # Human-readable representation of appVersion. Should match the way you
     # identify versions of your app in documentation and marketing.
 
@@ -67,7 +67,7 @@ const pkgdef :Spk.PackageDefinition = (
 
       description = (defaultText = embed "../README.md"),
 
-      shortDescription = (defaultText = "Sync service"),
+      shortDescription = (defaultText = "PC management"),
 
       screenshots = [
         # Screenshots to use for marketing purposes.  Examples below.
@@ -77,10 +77,7 @@ const pkgdef :Spk.PackageDefinition = (
         #(width = 746, height = 795, jpeg = embed "path/to/screenshot-1.jpeg"),
         #(width = 640, height = 480, png = embed "path/to/screenshot-2.png"),
       ],
-      #changeLog = (defaultText = embed "path/to/sandstorm-specific/changelog.md"),
-      # Documents the history of changes in Github-flavored markdown format (with the same restrictions
-      # as govern `description`). We recommend formatting this with an H1 heading for each version
-      # followed by a bullet list of changes.
+      changeLog = (defaultText = embed "../CHANGELOG.md"),
     ),
   ),
 
