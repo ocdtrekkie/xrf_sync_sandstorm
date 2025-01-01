@@ -19,9 +19,9 @@ const pkgdef :Spk.PackageDefinition = (
 
     appTitle = (defaultText = "XRF Sync"),
 
-    appVersion = 11,  # Increment this for every release.
+    appVersion = 12,  # Increment this for every release.
 
-    appMarketingVersion = (defaultText = "1.0.11"),
+    appMarketingVersion = (defaultText = "1.0.12"),
     # Human-readable representation of appVersion. Should match the way you
     # identify versions of your app in documentation and marketing.
 
@@ -70,12 +70,7 @@ const pkgdef :Spk.PackageDefinition = (
       shortDescription = (defaultText = "PC management"),
 
       screenshots = [
-        # Screenshots to use for marketing purposes.  Examples below.
-        # Sizes are given in device-independent pixels, so if you took these
-        # screenshots on a Retina-style high DPI screen, divide each dimension by two.
-
-        #(width = 746, height = 795, jpeg = embed "path/to/screenshot-1.jpeg"),
-        #(width = 640, height = 480, png = embed "path/to/screenshot-2.png"),
+        (width = 1086, height = 833, jpeg = embed "screen1.jpg"),
       ],
       changeLog = (defaultText = embed "../CHANGELOG.md"),
     ),
