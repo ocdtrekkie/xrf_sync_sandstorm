@@ -6,6 +6,12 @@ if ($do == "send")
 $descr = mysqli_real_escape_string($xrf_db, $_POST['descr']);
 $command = mysqli_real_escape_string($xrf_db, $_POST['command']);
 
+if ($command == "reset installed software") {
+	$resetsoftwaretable = mysqli_prepare($xrf_db, "DELETE FROM y_nodesoftware WHERE descr = ?");
+	mysqli_stmt_bind_param($resetsoftwaretable, "s", $descr);
+	mysqli_stmt_execute($resetsoftwaretable) or die(mysqli_error($xrf_db));
+}
+
 $commandnode = mysqli_prepare($xrf_db, "INSERT INTO y_messages (source, dest, sent, mesg) VALUES ('server', ?, NOW(), ?)");
 mysqli_stmt_bind_param($commandnode, "ss", $descr, $command);
 mysqli_stmt_execute($commandnode) or die(mysqli_error($xrf_db));

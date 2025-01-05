@@ -1,3 +1,9 @@
+# 1.0.13
+
+- Added alert bar for critical system health issues.
+- Removed but to check installed software as it is automatic.
+- Resetting installed software now clears central copy.
+
 # 1.0.12
 
 - Added one-click command bar to node details screen.
