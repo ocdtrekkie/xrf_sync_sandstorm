@@ -35,6 +35,9 @@ while ($row = mysqli_fetch_assoc($kvresult)) {
     if (str_starts_with($row['nkey'],"Security_")) {
         $fixarray[] = $row['nkey'];
     }
+    if (str_starts_with($row['nkey'],"Alert_")) {
+        $alertarray[] = $row['nkey'];
+    }
 }
 
 echo "<div align=left width=100% style=\"display: flex;\">
@@ -53,6 +56,14 @@ echo "<div align=left width=100% style=\"display: flex;\">
 <input type=\"text\" name=\"command\" /><input type=\"submit\" value=\"Send\" /></form>
 
 </span></div>";
+
+if (!empty($alertarray)) {
+	foreach ($alertarray as $alert) {
+		if ($kvarray[$alert] != "cleared") {
+			echo "<div align=left width=100% style=\"background-color: red;\"><b>" . $alert . "&nbsp;" . $kvarray[$alert] . "</div><br>";
+		}
+	}
+}
 
 echo "<b>$descr</b> (ID: $id)<p>";
 
