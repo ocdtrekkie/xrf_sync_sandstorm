@@ -47,9 +47,6 @@ echo "<div align=left width=100% style=\"display: flex;\">
 <input type=\"hidden\" name=\"command\" value=\"update agent\" /><input type=\"submit\" value=\"Update Agent\" /></form>
 
 <form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=sendcommand&do=send\" method=\"POST\"><input type=\"hidden\" name=\"descr\" value=\"$descr\" />
-<input type=\"hidden\" name=\"command\" value=\"check installed software\" /><input type=\"submit\" value=\"Check Installed Software\" /></form>
-
-<form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=sendcommand&do=send\" method=\"POST\"><input type=\"hidden\" name=\"descr\" value=\"$descr\" />
 <input type=\"hidden\" name=\"command\" value=\"reset installed software\" /><input type=\"submit\" value=\"Reset Installed Software\" /></form>
 
  &nbsp;|&nbsp; <form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=sendcommand&do=send\" method=\"POST\"><input type=\"hidden\" name=\"descr\" value=\"$descr\" />
