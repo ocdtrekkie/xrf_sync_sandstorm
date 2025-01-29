@@ -1,3 +1,7 @@
+# 1.0.14
+
+- Added panel to permanently remove a node.
+
 # 1.0.13
 
 - Added alert bar for critical system health issues.

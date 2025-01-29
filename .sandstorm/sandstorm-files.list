@@ -111,6 +111,7 @@ opt/app/install_into_db_sync_2406.2.sql
 opt/app/install_into_db_sync_2407.1.sql
 opt/app/ismodule.php
 opt/app/modules/sync/acpm_addnode.php
+opt/app/modules/sync/acpm_deletenode.php
 opt/app/modules/sync/acpm_nodedetail.php
 opt/app/modules/sync/acpm_nodelist.php
 opt/app/modules/sync/acpm_regenkey.php
@@ -344,6 +345,7 @@ usr/share/zoneinfo/Arctic/Longyearbyen
 usr/share/zoneinfo/Asia
 usr/share/zoneinfo/Asia/Ashkhabad
 usr/share/zoneinfo/Asia/Calcutta
+usr/share/zoneinfo/Asia/Choibalsan
 usr/share/zoneinfo/Asia/Chongqing
 usr/share/zoneinfo/Asia/Chungking
 usr/share/zoneinfo/Asia/Dacca
