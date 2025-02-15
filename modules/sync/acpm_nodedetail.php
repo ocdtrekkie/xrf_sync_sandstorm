@@ -84,7 +84,7 @@ if (!empty($fixarray)) {
     echo "<p><b>Security Fixes</b></p>";
 
     foreach ($fixarray as $fix) {
-        echo $fix . "&nbsp;" . $kvarray[$fix];
+        echo $fix . "&nbsp;" . $kvarray[$fix] . "<br>";
     }
 }
 
