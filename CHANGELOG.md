@@ -1,3 +1,8 @@
+# 1.0.15
+
+- Store and display local IP address of each node.
+- Formatting fix for security patches.
+
 # 1.0.14
 
 - Added panel to permanently remove a node.

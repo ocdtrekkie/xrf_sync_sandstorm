@@ -19,6 +19,7 @@ $descr=xrf_mysql_result($result,0,"descr");
 $pool_id=xrf_mysql_result($result,0,"pool_id");
 $last_seen=xrf_mysql_result($result,0,"last_seen");
 $last_ip_addr=xrf_mysql_result($result,0,"last_ip_addr");
+$last_ip_local=xrf_mysql_result($result,0,"last_ip_local");
 $last_winver=xrf_mysql_result($result,0,"last_winver");
 $user_agent=xrf_mysql_result($result,0,"user_agent");
 $static=xrf_mysql_result($result,0,"static");
@@ -66,7 +67,7 @@ echo "<b>$descr</b> (ID: $id)<p>";
 
 echo "<table width=100%><tr><td width=50%>Hostname: " . @$kvarray['System_Hostname'] . "<br> <br>OS: " . @$kvarray['System_OSProductName'] . "<br>Build: $last_winver";
 
-echo "<br> <br>Last Seen: $last_seen<br>Last IP Address: $last_ip_addr<br>User Agent: $user_agent";
+echo "<br> <br>Last Seen: $last_seen<br>Last Public IP: $last_ip_addr<br>Last Local IP: $last_ip_local<br>User Agent: $user_agent";
 
 if (isset($kvarray['HAController_Version'])) {
 	echo "<br>HAC Version: HAController/" . $kvarray['HAController_Version'];

@@ -109,6 +109,7 @@ opt/app/install_into_db_sync.sql
 opt/app/install_into_db_sync_2406.1.sql
 opt/app/install_into_db_sync_2406.2.sql
 opt/app/install_into_db_sync_2407.1.sql
+opt/app/install_into_db_sync_2503.1.sql
 opt/app/ismodule.php
 opt/app/modules/sync/acpm_addnode.php
 opt/app/modules/sync/acpm_deletenode.php
