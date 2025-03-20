@@ -19,14 +19,18 @@ echo "<script>
     window.parent.postMessage({renderTemplate: {
       rpcId: \"0\",
       template: templateToken,
-	  petname: '$descr',
+      petname: '$descr',
+      forSharing: true,
+      roleAssignment: {roleId: 3}, // guest
       clipboardButton: 'left',
 	  style: { color: '$tcolor' }
     }}, \"*\");
 	window.parent.postMessage({renderTemplate: {
       rpcId: \"1\",
       template: templateHost,
-	  petname: '$descr',
+      petname: '$descr',
+      forSharing: true,
+      roleAssignment: {roleId: 3}, // guest
       clipboardButton: 'left',
 	  style: { color: '$tcolor' }
     }}, \"*\");

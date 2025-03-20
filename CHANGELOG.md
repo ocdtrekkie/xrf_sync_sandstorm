@@ -1,3 +1,7 @@
+# 1.0.16
+
+- Set permissions on node keys.
+
 # 1.0.15
 
 - Store and display local IP address of each node.
