@@ -1,3 +1,7 @@
+# 1.0.17
+
+- Added panel to remote rekey a node's Sandstorm token.
+
 # 1.0.16
 
 - Set permissions on node keys.

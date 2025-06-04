@@ -116,6 +116,7 @@ opt/app/modules/sync/acpm_deletenode.php
 opt/app/modules/sync/acpm_nodedetail.php
 opt/app/modules/sync/acpm_nodelist.php
 opt/app/modules/sync/acpm_regenkey.php
+opt/app/modules/sync/acpm_remoterekey.php
 opt/app/modules/sync/acpm_sendcommand.php
 opt/app/modules/sync/controlpanel.php
 opt/app/styles/print/style.css

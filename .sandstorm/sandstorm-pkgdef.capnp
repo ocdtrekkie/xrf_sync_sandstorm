@@ -19,9 +19,9 @@ const pkgdef :Spk.PackageDefinition = (
 
     appTitle = (defaultText = "XRF Sync"),
 
-    appVersion = 16,  # Increment this for every release.
+    appVersion = 17,  # Increment this for every release.
 
-    appMarketingVersion = (defaultText = "1.0.16"),
+    appMarketingVersion = (defaultText = "1.0.17"),
     # Human-readable representation of appVersion. Should match the way you
     # identify versions of your app in documentation and marketing.
 
