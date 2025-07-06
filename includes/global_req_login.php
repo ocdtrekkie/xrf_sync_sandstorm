@@ -11,6 +11,7 @@ $xrf_myid = 0;
 $xrf_myusername = "";
 $xrf_myuclass = "";
 $xrf_myulevel = 1;
+$xrf_mystylepref = "";
 
 $xrf_db = @mysqli_connect($xrf_dbserver, $xrf_dbusername, $xrf_dbpassword, $xrf_dbname) or die(mysqli_connect_error());
 
@@ -32,14 +33,14 @@ $xrf_style_default=xrf_mysql_result($xrf_config_result,0,"style_default");
 
 xrf_check_auth_version($xrf_auth_version_page, $xrf_auth_version_db) or die("Unable to verify authentication version.  Please report to the system administrator.");
 
-$xrf_myemail = $_SERVER['HTTP_X_SANDSTORM_USER_ID'];
+$xrf_myemail = $_SERVER['HTTP_X_SANDSTORM_USER_ID'] ?? '';
 $xrf_myusername = urldecode($_SERVER['HTTP_X_SANDSTORM_USERNAME']);
 if (strpos($_SERVER['HTTP_X_SANDSTORM_PERMISSIONS'], "admin") !== false) { $xrf_myulevel = 4; }
 elseif (strpos($_SERVER['HTTP_X_SANDSTORM_PERMISSIONS'], "mod") !== false) { $xrf_myulevel = 3; }
 elseif (strpos($_SERVER['HTTP_X_SANDSTORM_PERMISSIONS'], "user") !== false) { $xrf_myulevel = 2; }
 
 // Ensure user is logged in
-if ($xrf_myusername == "Anonymous User")
+if ($xrf_myusername == "Anonymous User" || $xrf_myemail == '')
 {
 die("You are not logged in!");
 }

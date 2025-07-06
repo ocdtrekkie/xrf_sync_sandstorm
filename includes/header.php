@@ -11,7 +11,7 @@ echo "<div class=\"header\" align=\"center\">
 <table width=\"100%\"><tr><td>
 <p align=\"left\">
 <font size=\"6\">$xrf_site_name</font><br>
-<span class=\"navigation-box\">$xrf_myusername ($xrf_myemail)</span>
+<span class=\"navigation-box\">$xrf_myusername</span>
 </p>
 </td><td>
 <p align=\"right\" class=\"navigation-box\"><a href=\"index.php\">Home</a></p>

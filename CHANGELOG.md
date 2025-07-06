@@ -1,3 +1,7 @@
+# 1.0.18
+
+- Fixed warnings in anonymous access conditions like the API.
+
 # 1.0.17
 
 - Added panel to remote rekey a node's Sandstorm token.
