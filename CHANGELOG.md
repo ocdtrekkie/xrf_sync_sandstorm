@@ -1,3 +1,7 @@
+# 1.0.19
+
+- Display last Speedtest results in node details.
+
 # 1.0.18
 
 - Fixed warnings in anonymous access conditions like the API.

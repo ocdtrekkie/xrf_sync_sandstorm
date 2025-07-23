@@ -123,4 +123,10 @@ if ($num != 0) {
     echo "</table>";
 }
 
+if (isset($kvarray['Speedtest_LastRun'])) {
+	echo "<p><b>Speedtest Results (provided by Ookla)</b><br>Note: The Speedtest tool is not open source.</p>";
+	
+	echo "<br>Last Run: " . $kvarray['Speedtest_LastRun'] . "<br>Download: " . $kvarray['Speedtest_Download'] . " Mbps<br>Upload: " . $kvarray['Speedtest_Upload'] . " Mbps";
+}
+
 ?>
