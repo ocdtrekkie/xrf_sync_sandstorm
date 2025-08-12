@@ -1,6 +1,8 @@
 <?php
 require("ismodule.php");
 (int)$nodeid=$_GET['nodeid'];
+(int)$page=$_GET['page'] ?? 1;
+$perpage=25;
 
 function formatBytes($bytes, $precision = 2) {
     if ($bytes == '') { return ''; } else { $bytes = floatval($bytes); }
@@ -100,15 +102,27 @@ if (!empty($drivearray)) {
     echo "</table>";
 }
 
-$softquery="SELECT * FROM y_nodesoftware WHERE descr = '$descr' ORDER BY appname ASC";
+$start = ($page - 1) * $perpage;
+$softquery="SELECT * FROM y_nodesoftware WHERE descr = '$descr' ORDER BY appname ASC LIMIT $start,$perpage";
 $softresult=mysqli_query($xrf_db, $softquery);
-
 $num=mysqli_num_rows($softresult);
 
 if ($num != 0) {
+    $pagecontrols = "<p><small>";
+    if($page != 1) {
+        $prevpage = $page - 1;
+        $pagecontrols .= "<a href=\"acp_module_panel.php?modfolder=$modfolder&modpanel=nodedetail&nodeid=$nodeid&page=1\">[<<]</a> 
+        <a href=\"acp_module_panel.php?modfolder=$modfolder&modpanel=nodedetail&nodeid=$nodeid&page=$prevpage\">[<]</a>";
+    }
+    if($num == $perpage) {
+        $nextpage = $page + 1;
+        $pagecontrols .= "<a href=\"acp_module_panel.php?modfolder=$modfolder&modpanel=nodedetail&nodeid=$nodeid&page=$nextpage\">[>]</a>";
+    }
+    $pagecontrols .= "</small></p>";
+
     echo "<p><b>Installed Software</b></p>";
 
-    echo "<table><tr><td width=300><b>App Name</b></td><td width=180><b>Version</b><td width=220><b>Publisher</b></td><td width=120><b>Installed</b></td></tr>";
+    echo "$pagecontrols<table><tr><td width=300><b>App Name</b></td><td width=180><b>Version</b><td width=220><b>Publisher</b></td><td width=120><b>Installed</b></td></tr>";
     $qq=0;
     while ($qq < $num) {
         $appname=xrf_mysql_result($softresult,$qq,"appname");
@@ -120,7 +134,7 @@ if ($num != 0) {
         $qq++;
     }
 
-    echo "</table>";
+    echo "</table>$pagecontrols";
 }
 
 if (isset($kvarray['Speedtest_LastRun'])) {
